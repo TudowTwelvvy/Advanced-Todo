@@ -1,8 +1,12 @@
 import React from 'react'
+import store from './redux/store'
+import { Provider } from 'react-redux'
 
 function App() {
   return (
-    <div className='text-red-500'>App</div>
+    <Provider store={store} >
+      <div>yes</div>
+    </Provider>
   )
 }
 
