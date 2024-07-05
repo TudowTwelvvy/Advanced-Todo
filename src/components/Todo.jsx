@@ -3,6 +3,8 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { useDispatch } from 'react-redux';
 import { BsSearch } from "react-icons/bs";
 import FilterButton from './FilterButton';
+import TodoList from './TodoList';
+import { addTodo, updateSearchTerm } from '../redux/actions';
 
 function Todo() {
   const dispatch= useDispatch()
@@ -36,14 +38,16 @@ function Todo() {
       </div>
 
 
-      <div className='flex items-center justify-between'>
+      <div className='flex flex-col-reverse md:flex-row md:items-center  justify-between gap-2 md:gap-36 '>
         <FilterButton/>
 
-        <div className='flex items-center mb-4'>
-          <input onChange={(e)=>handleSearchChange(e.target.value)} type="text" name="searchTodoInput" placeholder='Search'className='p-2 focus:outline-none focus:outline-none flex-1' value={searchTerm}/>
-          <button  className=' p-2 text-pri-blue text-3xl cursor-pointer hover:text-opacity-85'><BsSearch/></button>
+        <div className='flex flex-1 items-center mb-2 md:mb-4  bg-white justify-between rounded border-2 '>
+          <input onChange={(e)=>handleSearchChange(e.target.value)} type="text" name="searchTodoInput" placeholder='Search'className='p-1 md:p-2 focus:outline-none focus:outline-none flex-1 w-full' value={searchTerm}/>
+          <button  className=' p-1 text-pri-blue text-lg md:text-3xl cursor-pointer hover:text-opacity-85 :'><BsSearch/></button>
         </div>
       </div>
+
+      <TodoList/>
     </div>
   )
 }

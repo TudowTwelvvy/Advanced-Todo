@@ -1,4 +1,4 @@
-import { ADD_TODO, FILTER_TODO, MARK_ALL_COMPLETED, MARK_COMPLETED, REMOVE_TODO, TOGGLE_TODO, UPDATE_SEARCH_TERM } from "./actionTypes";
+import { ADD_TODO, FILTER_TODO, MARK_ALL_COMPLETED, MARK_COMPLETED, MARK_INCOMPLETE, REMOVE_TODO, TOGGLE_TODO, UPDATE_SEARCH_TERM } from "./actionTypes";
 
 const initialState ={
   todos:[],
@@ -34,6 +34,13 @@ const todoReducer =(state = initialState, action)=>{
           filter: state.filter,
           searchTerm: state.searchTerm
       }
+    case MARK_INCOMPLETE:
+      return {
+          todos: state.todos.map((todo,index)=>index === action.payload.id ? {...todo, completed:false}: todo),
+  
+          filter: state.filter,
+          searchTerm: state.searchTerm
+      }
     case FILTER_TODO:
       return {
           todos: state.todos,
@@ -43,7 +50,7 @@ const todoReducer =(state = initialState, action)=>{
     case UPDATE_SEARCH_TERM:
       return {
           todos: state.todos,
-          filter: action.payload.filter,
+          filter: state.filter,
           searchTerm: action.payload.searchTerm
       }
     case MARK_ALL_COMPLETED:
